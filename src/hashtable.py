@@ -15,7 +15,7 @@ class HashTable:
     def __init__(self, capacity):
         self.capacity = capacity  # Number of buckets in the hash table
         self.storage = [None] * capacity
-
+        self.headnode = LinkedPair(key=None, value=None)#Instantiate a head node
 
     def _hash(self, key):
         '''
@@ -52,10 +52,15 @@ class HashTable:
         Fill this in.
         '''
         index = self._hash_mod(key)#turn key into index in our array
-        if self.storage[index] is not None:
+        if self.storage[index] is not None: # if there is something there
             print("Error: Key in use")
-            current_next = self.next
-            self.next = LinkedPair(value, self, current_next)
+            current = self.storage
+            if current[key] != key: # if next element is not empty
+                
+                node = LinkedPair(key, value)
+
+            else: 
+                current[index] = value 
         else:
             self.storage[index] = value
 
